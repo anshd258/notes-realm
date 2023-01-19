@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:notes/notes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,22 +27,25 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 84, 161, 76),
+        backgroundColor: const Color.fromARGB(255, 84, 161, 76),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           title: Text(
             'NOTES',
             style: GoogleFonts.rubik(
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 0, 0, 0),
+              color: const Color.fromARGB(255, 0, 0, 0),
             ),
           ),
         ),
+        body: const NotesCard(),
+
+        // FLOATING ACTION BUTTON TO ADD NOTES
         floatingActionButton: FloatingActionButton(
           onPressed: _incrementCounter,
           tooltip: 'Increment',
-          backgroundColor: Color.fromARGB(255, 255, 246, 169),
-          child: Icon(Icons.add),
+          backgroundColor: const Color.fromARGB(255, 255, 246, 169),
+          child: const Icon(Icons.add),
         ),
       ),
     );
