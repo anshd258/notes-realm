@@ -77,7 +77,6 @@ class _page2State extends State<page2> {
               ),
               FloatingActionButton.extended(
                 onPressed: () {
-                  context.read<NotesProvider>().createNote(_controller.text);
                   Navigator.pop(context);
                 },
                 label: Text("ADD"),
