@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import './provider/notesprovider.dart';
 
 class NotesCard extends StatefulWidget {
   const NotesCard({super.key});
@@ -11,42 +13,11 @@ class NotesCard extends StatefulWidget {
 
 class _NotesCardState extends State<NotesCard> {
   // LIST OF THE NOTES
-  List notes = [
-    {
-      "date": "XX/XX/XXXX",
-      "note": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "date": "XX/XX/XXXX",
-      "note":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "date": "XX/XX/XXXX",
-      "note":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "date": "XX/XX/XXXX",
-      "note":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "date": "XX/XX/XXXX",
-      "note":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-    {
-      "date": "XX/XX/XXXX",
-      "note":
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    },
-  ];
+  TextEditingController ctr = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final notes = context.watch<NotesProvider>().notes;
     return SingleChildScrollView(
       child: Center(
         child: Container(
@@ -55,6 +26,7 @@ class _NotesCardState extends State<NotesCard> {
           child: Column(
             // MAAPING THE ITEMS OF THE LIST IN CARDS
             children: notes.map((e) {
+              final date = DateTime.parse(e.date!);
               return Column(
                 children: [
                   const SizedBox(
@@ -110,8 +82,8 @@ class _NotesCardState extends State<NotesCard> {
                                                         const SizedBox(
                                                           height: 30,
                                                         ),
-                                                        Text(
-                                                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                                                        TextField(
+                                                          controller: ctr,
                                                           style: GoogleFonts
                                                               .ubuntu(
                                                             fontSize: 20,
@@ -121,7 +93,16 @@ class _NotesCardState extends State<NotesCard> {
                                                           height: 50,
                                                         ),
                                                         OutlinedButton(
-                                                          onPressed: () {},
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            context
+                                                                .read<
+                                                                    NotesProvider>()
+                                                                .updateNote(
+                                                                    ctr.text,
+                                                                    e.uuid!);
+                                                          },
                                                           child: Text(
                                                             'UPDATE',
                                                             style: GoogleFonts
@@ -148,7 +129,11 @@ class _NotesCardState extends State<NotesCard> {
                                         width: 5,
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          context
+                                              .read<NotesProvider>()
+                                              .deleteNote(e);
+                                        },
                                         icon: Icon(
                                           Icons.delete,
                                           size: 20,
@@ -162,7 +147,7 @@ class _NotesCardState extends State<NotesCard> {
                                   margin:
                                       const EdgeInsets.fromLTRB(10, 1, 10, 10),
                                   child: Text(
-                                    e['note'],
+                                    e.note!,
                                     style: GoogleFonts.ubuntu(fontSize: 1.5.h),
                                   ),
                                 ),
@@ -196,7 +181,7 @@ class _NotesCardState extends State<NotesCard> {
                             ],
                           ),
                           child: Text(
-                            e['date'],
+                            "${date.day} - ${date.month} - ${date.year}",
                             style: GoogleFonts.ubuntu(fontSize: 1.5.h),
                           ),
                         ),
