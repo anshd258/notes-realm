@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:sizer/sizer.dart';
 
 class page2 extends StatefulWidget {
   const page2({super.key});
@@ -29,8 +29,8 @@ class _page2State extends State<page2> {
           child: Center(
         child: Container(
           
-          width:Adaptive.w(70),
-      height: Adaptive.h(40),
+          width:70.w,
+      height: 40.h,
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 208, 208, 208),
         borderRadius: BorderRadius.all(Radius.circular(50)),
