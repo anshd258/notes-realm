@@ -96,7 +96,12 @@ class _NotesCardState extends State<NotesCard> {
                                                           onPressed: () {
                                                             Navigator.pop(
                                                                 context);
-                                                          
+                                                            context
+                                                                .read<
+                                                                    NotesProvider>()
+                                                                .updatenote(
+                                                                    ctr.text,
+                                                                    e.uuid!);
                                                           },
                                                           child: Text(
                                                             'UPDATE',
@@ -125,8 +130,8 @@ class _NotesCardState extends State<NotesCard> {
                                       ),
                                       IconButton(
                                         onPressed: () {
-                                         
-                                        },
+                                          
+                                       context .read<NotesProvider>().deletenode(e);},
                                         icon: Icon(
                                           Icons.delete,
                                           size: 20,

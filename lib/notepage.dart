@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/model/notesmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import './provider/notesprovider.dart';
@@ -78,6 +79,7 @@ class _page2State extends State<page2> {
               FloatingActionButton.extended(
                 onPressed: () {
                   Navigator.pop(context);
+                  context.read<NotesProvider>().addnote(_controller.text);
                 },
                 label: Text("ADD"),
                 backgroundColor: Colors.green,
