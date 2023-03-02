@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notes/notes.dart';
 
+import 'model/colour.dart';
+
 
 class page1 extends StatefulWidget {
   const page1({super.key});
@@ -14,9 +16,9 @@ class _page1State extends State<page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 84, 161, 76),
+      backgroundColor: Background,
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: noteandmodelcard,
         title: Text(
           'NOTES',
           style: GoogleFonts.rubik(
@@ -33,7 +35,7 @@ class _page1State extends State<page1> {
           Navigator.pushNamed(context, "/notespage");
         },
         tooltip: 'Increment',
-        backgroundColor: const Color.fromARGB(255, 255, 246, 169),
+        backgroundColor: dateandadd,
         child: const Icon(Icons.add),
       ),
     );

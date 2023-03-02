@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/model/colour.dart';
 import 'package:notes/model/notesmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -17,7 +18,7 @@ class _page2State extends State<page2> {
   Widget build(BuildContext context) {
     final date = DateTime.now();
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 77, 168, 20),
+      backgroundColor: Background,
       appBar: AppBar(
         leading: BackButton(),
         title: Text('ADD YOUR NOTE'),
@@ -26,7 +27,7 @@ class _page2State extends State<page2> {
             bottom: Radius.circular(30),
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: addappbar,
       ),
       body: SafeArea(
           child: Center(
@@ -34,8 +35,8 @@ class _page2State extends State<page2> {
           width: 70.w,
           padding: EdgeInsets.symmetric(vertical: 2.h),
           height: 40.h,
-          decoration: BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255),
+          decoration: const BoxDecoration(
+            color: noteandmodelcard,
             borderRadius: BorderRadius.all(Radius.circular(50)),
           ),
           child: Column(
@@ -47,31 +48,31 @@ class _page2State extends State<page2> {
                 child: TextField(
                   textAlign: TextAlign.center,
                   controller: _controller,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
+                  decoration:const  InputDecoration(
+                    focusedBorder:  OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(20),
                       ),
                       borderSide: BorderSide(
-                          width: 0.5, color: Colors.greenAccent.shade400),
+                          width: 0.5, color: Borderside),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
+                    enabledBorder:  OutlineInputBorder(
+                      borderRadius:  BorderRadius.all(
                         Radius.circular(20),
                       ),
                       borderSide: BorderSide(
-                          width: 0.5, color: Colors.greenAccent.shade400),
+                          width: 0.5, color: Borderside),
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
+                    border:  OutlineInputBorder(
+                      borderRadius:  BorderRadius.all(
                         Radius.circular(20),
                       ),
                       borderSide: BorderSide(
-                          width: 0.5, color: Colors.greenAccent.shade400),
+                          width: 0.5, color: Borderside),
                     ),
-                    icon: Icon(
+                    icon:  Icon(
                       Icons.text_fields_rounded,
-                      color: Colors.black54,
+                      color: fieldcolor,
                     ),
                   ),
                 ),
@@ -81,8 +82,8 @@ class _page2State extends State<page2> {
                   Navigator.pop(context);
                   context.read<NotesProvider>().addnote(_controller.text);
                 },
-                label: Text("ADD"),
-                backgroundColor: Colors.green,
+                label: const Text("ADD"),
+                backgroundColor: Background,
               )
             ],
           ),

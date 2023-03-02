@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/model/colour.dart';
 import 'package:sizer/sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,7 @@ class _NotesCardState extends State<NotesCard> {
                           width: 75.w,
                           margin: const EdgeInsets.only(top: 30),
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 255, 255, 255),
+                            color: noteandmodelcard,
                             border: Border.all(
                               color: Colors.transparent,
                             ),
@@ -69,8 +70,7 @@ class _NotesCardState extends State<NotesCard> {
                                         onPressed: () {
                                           showModalBottomSheet(
                                               backgroundColor:
-                                                  const Color.fromARGB(
-                                                      226, 255, 255, 255),
+                                                  noteandmodelcard,
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return Container(
@@ -109,7 +109,7 @@ class _NotesCardState extends State<NotesCard> {
                                                                 .ubuntu(
                                                               fontSize: 20,
                                                               color:
-                                                                  Colors.black,
+                                                                  textcolour,
                                                             ),
                                                           ),
                                                         ),
@@ -119,10 +119,10 @@ class _NotesCardState extends State<NotesCard> {
                                                 );
                                               });
                                         },
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.edit,
                                           size: 20,
-                                          color: Colors.blue[900],
+                                          color: updateicon,
                                         ),
                                       ),
                                       const SizedBox(
@@ -132,10 +132,10 @@ class _NotesCardState extends State<NotesCard> {
                                         onPressed: () {
                                           
                                        context .read<NotesProvider>().deletenode(e);},
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.delete,
                                           size: 20,
-                                          color: Colors.red[900],
+                                          color: deleteicon,
                                         ),
                                       ),
                                     ],
@@ -162,7 +162,7 @@ class _NotesCardState extends State<NotesCard> {
                           height: 7.h,
                           width: 20.w,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 255, 246, 189),
+                            color: dateandadd,
                             border: Border.all(
                               color: Colors.transparent,
                             ),
