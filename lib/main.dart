@@ -1,11 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:notes/notepage.dart';
-import 'package:notes/page1.dart';
+import 'package:notes/model/notesStruct.dart';
+import 'package:notes/screens/notepage.dart';
+import 'package:notes/screens/page1.dart';
+import 'package:realm/realm.dart';
 import 'package:sizer/sizer.dart';
 import './provider/notesprovider.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+late final Realm realm;
+
+void main() async {
+
+  //connection with altas
+  final app = App(AppConfiguration("Your app ID"));
+
+  //check user login status
+  final user = app.currentUser ?? await app.logIn(Credentials.anonymous());
+
+  //stabilise flexible sync
+  final config = Configuration.flexibleSync(user,[NoteStruct.schema]);
+  realm = Realm(config);
+
+  // Add subscription to sync all NoteStruct objects in the realm
+  realm.subscriptions.update((mutableSubscriptions) {
+    mutableSubscriptions.add(realm.all<NoteStruct>());
+  });
+
+  // Sync all subscriptions
+  // await realm.subscriptions.waitForSynchronization();
   runApp(const MyApp());
 }
 

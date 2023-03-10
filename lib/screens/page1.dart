@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:notes/notes.dart';
+import 'package:notes/screens/notes.dart';
 
 
 class page1 extends StatefulWidget {
@@ -17,15 +17,17 @@ class _page1State extends State<page1> {
       backgroundColor: const Color.fromARGB(255, 84, 161, 76),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        centerTitle: true,
         title: Text(
           'NOTES',
-          style: GoogleFonts.rubik(
+          style: GoogleFonts.arya(
+            fontSize: 28,
             fontWeight: FontWeight.bold,
             color: const Color.fromARGB(255, 0, 0, 0),
           ),
         ),
       ),
-      body: const NotesCard(),
+      body: NotesCard(),
 
       // FLOATING ACTION BUTTON TO ADD NOTES
       floatingActionButton: FloatingActionButton(
@@ -34,7 +36,8 @@ class _page1State extends State<page1> {
         },
         tooltip: 'Increment',
         backgroundColor: const Color.fromARGB(255, 255, 246, 169),
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add,color: Colors.black87,),
+
       ),
     );
   }
