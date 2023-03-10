@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:notes/model/colour.dart';
 import 'package:sizer/sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -89,9 +90,7 @@ class _NotesCardState extends State<NotesCard> {
                                           String value = e.content!;
                                           print(value);
                                           showModalBottomSheet(
-                                              backgroundColor:
-                                              const Color.fromARGB(
-                                                  226, 255, 255, 255),
+                                              backgroundColor: noteandmodelcard,
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return Container(

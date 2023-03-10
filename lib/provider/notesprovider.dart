@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/model/notesStruct.dart';
 import 'package:realm/realm.dart';
-import "../model/notesmodel.dart";
 import 'package:notes/main.dart';
 
 class NotesProvider with ChangeNotifier {

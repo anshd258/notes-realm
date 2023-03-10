@@ -12,7 +12,7 @@ late final Realm realm;
 void main() async {
 
   //connection with altas
-  final app = App(AppConfiguration("Your app ID"));
+  final app = App(AppConfiguration("notes-app-rzwgm"));
 
   //check user login status
   final user = app.currentUser ?? await app.logIn(Credentials.anonymous());

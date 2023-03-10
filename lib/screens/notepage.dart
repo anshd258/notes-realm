@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:uuid/uuid.dart';
+import '../model/colour.dart';
 import '../provider/notesprovider.dart';
 
 class page2 extends StatefulWidget {
@@ -22,7 +23,7 @@ class _page2State extends State<page2> {
   Widget build(BuildContext context) {
     final date = DateTime.now();
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 77, 168, 20),
+      backgroundColor:Background,
       appBar: AppBar(
         leading: BackButton(),
         title: Text('ADD YOUR NOTE'),
@@ -31,7 +32,7 @@ class _page2State extends State<page2> {
             bottom: Radius.circular(30),
           ),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: addappbar,
       ),
       body: SafeArea(
           child: Center(
