@@ -4,16 +4,14 @@ import 'package:notes/screens/notes.dart';
 
 import '../model/colour.dart';
 
-
-
-class page1 extends StatefulWidget {
-  const page1({super.key});
+class Page1 extends StatefulWidget {
+  const Page1({super.key});
 
   @override
-  State<page1> createState() => _page1State();
+  State<Page1> createState() => _Page1State();
 }
 
-class _page1State extends State<page1> {
+class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +28,7 @@ class _page1State extends State<page1> {
           ),
         ),
       ),
-      body: NotesCard(),
+      body: const NotesCard(),
 
       // FLOATING ACTION BUTTON TO ADD NOTES
       floatingActionButton: FloatingActionButton(
@@ -39,7 +37,10 @@ class _page1State extends State<page1> {
         },
         tooltip: 'Increment',
         backgroundColor: const Color.fromARGB(255, 255, 246, 169),
-        child: const Icon(Icons.add,color: Colors.black87,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.black87,
+        ),
       ),
     );
   }

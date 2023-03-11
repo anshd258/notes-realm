@@ -1,9 +1,9 @@
 import 'package:realm/realm.dart';
 
-part "notesStruct.g.dart";
+part "notes_struct.g.dart";
 
 @RealmModel()
-class _NoteStruct{
+class _NoteStruct {
   @PrimaryKey()
   @MapTo('_id')
   late String id;
