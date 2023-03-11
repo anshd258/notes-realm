@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'notesStruct.dart';
+part of 'notes_struct.dart';
 
 // **************************************************************************
 // RealmObjectGenerator

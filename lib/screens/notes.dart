@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:notes/model/colour.dart';
 import 'package:sizer/sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../provider/notesprovider.dart';
+import '../provider/notes_provider.dart';
 
 class NotesCard extends StatefulWidget {
   const NotesCard({super.key});
@@ -18,16 +16,17 @@ class _NotesCardState extends State<NotesCard> {
   // LIST OF THE NOTES
   TextEditingController ctr = TextEditingController();
   @override
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final notes = context.watch<NotesProvider>().notes;
 
     return SingleChildScrollView(
       child: Center(
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Column(
               // MAAPING THE ITEMS OF THE LIST IN CARDS
               children: notes.map<Widget>((e) {
@@ -68,34 +67,42 @@ class _NotesCardState extends State<NotesCard> {
                                 Expanded(
                                   child: SingleChildScrollView(
                                     child: Container(
-                                      margin:
-                                          const EdgeInsets.fromLTRB(21, 20, 6, 10),
+                                      margin: const EdgeInsets.fromLTRB(
+                                          21, 20, 6, 10),
                                       child: Text(
                                         e.content!,
-                                        style: TextStyle(fontSize: 15.sp,fontStyle: FontStyle.normal,height: 0.16.h),
+                                        style: TextStyle(
+                                            fontSize: 15.sp,
+                                            fontStyle: FontStyle.normal,
+                                            height: 0.16.h),
                                       ),
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0,15,1,8),
-                                  child: VerticalDivider(width: 8,thickness: 1,color: Colors.grey,),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 15, 1, 8),
+                                  child: VerticalDivider(
+                                    width: 8,
+                                    thickness: 1,
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 Column(
                                   children: [
-                                    SizedBox(height: 1.h,),
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
                                     Expanded(
                                       child: IconButton(
                                         onPressed: () {
                                           String value = e.content!;
-                                          print(value);
                                           showModalBottomSheet(
                                               backgroundColor: noteandmodelcard,
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return Container(
                                                   margin:
-                                                  const EdgeInsets.all(40),
+                                                      const EdgeInsets.all(40),
                                                   child: Center(
                                                     child: Column(
                                                       children: [
@@ -104,24 +111,26 @@ class _NotesCardState extends State<NotesCard> {
                                                         ),
                                                         TextFormField(
                                                           initialValue: value,
-                                                          onChanged: (text){
-                                                            value=text;
-
+                                                          onChanged: (text) {
+                                                            value = text;
                                                           },
                                                           style: GoogleFonts
                                                               .ubuntu(
                                                             fontSize: 20,
                                                           ),
                                                         ),
-                                                        SizedBox(
+                                                        const SizedBox(
                                                           height: 100,
                                                         ),
                                                         OutlinedButton(
                                                           onPressed: () {
-                                                            context.read<NotesProvider>().update(value,e.id);
+                                                            context
+                                                                .read<
+                                                                    NotesProvider>()
+                                                                .update(value,
+                                                                    e.id);
                                                             Navigator.pop(
                                                                 context);
-
                                                           },
                                                           child: Text(
                                                             'UPDATE',
@@ -129,7 +138,7 @@ class _NotesCardState extends State<NotesCard> {
                                                                 .ubuntu(
                                                               fontSize: 20,
                                                               color:
-                                                              Colors.black,
+                                                                  Colors.black,
                                                             ),
                                                           ),
                                                         ),
@@ -149,8 +158,9 @@ class _NotesCardState extends State<NotesCard> {
                                     Expanded(
                                       child: IconButton(
                                         onPressed: () {
-                                          context.read<NotesProvider>().delete(e);
-
+                                          context
+                                              .read<NotesProvider>()
+                                              .delete(e);
                                         },
                                         icon: Icon(
                                           Icons.delete,
@@ -159,8 +169,9 @@ class _NotesCardState extends State<NotesCard> {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 1.h,),
-
+                                    SizedBox(
+                                      height: 1.h,
+                                    ),
                                   ],
                                 ),
                               ],
@@ -203,14 +214,10 @@ class _NotesCardState extends State<NotesCard> {
                 );
               }).toList(),
             ),
-            SizedBox(height: 40)
+            const SizedBox(height: 40)
           ],
         ),
       ),
     );
   }
-
-
 }
-
-

@@ -9,13 +9,13 @@ class NotesModel {
     date = json['date'];
     uuid = json['uuid'];
     note = json['note'];
-  } 
+  }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['date'] = this.date;
-    data['uuid'] = this.uuid;
-    data['note'] = this.note;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['date'] = date;
+    data['uuid'] = uuid;
+    data['note'] = note;
     return data;
   }
 }

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:notes/model/notesStruct.dart';
+import 'package:notes/model/notes_struct.dart';
 import 'package:notes/screens/notepage.dart';
 import 'package:notes/screens/page1.dart';
 import 'package:realm/realm.dart';
 import 'package:sizer/sizer.dart';
-import './provider/notesprovider.dart';
+import 'provider/notes_provider.dart';
 import 'package:provider/provider.dart';
 
 late final Realm realm;
 
 void main() async {
-
   //connection with altas
   final app = App(AppConfiguration("notes-app-rzwgm"));
 
@@ -18,7 +17,7 @@ void main() async {
   final user = app.currentUser ?? await app.logIn(Credentials.anonymous());
 
   //stabilise flexible sync
-  final config = Configuration.flexibleSync(user,[NoteStruct.schema]);
+  final config = Configuration.flexibleSync(user, [NoteStruct.schema]);
   realm = Realm(config);
 
   // Add subscription to sync all NoteStruct objects in the realm
@@ -49,8 +48,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             initialRoute: "/",
             routes: {
-              '/': (context) => const page1(),
-              '/notespage': (context) => const page2()
+              '/': (context) => const Page1(),
+              '/notespage': (context) => const Page2()
             },
             debugShowCheckedModeBanner: false,
           );
