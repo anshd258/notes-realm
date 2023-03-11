@@ -1,11 +1,14 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:uuid/uuid.dart';
 import '../model/colour.dart';
 import '../provider/notesprovider.dart';
+import 'package:toast/toast.dart';
+import 'package:motion_toast/motion_toast.dart';
 
 class page2 extends StatefulWidget {
   const page2({super.key});
@@ -89,8 +92,17 @@ class _page2State extends State<page2> {
                   ),
                 ),
                 ElevatedButton(onPressed: (){
+                  if(_controller.text.isEmpty){
+                    MotionToast.error(description: Text("Enter some text"),title: Text("Can't be added"),position: MotionToastPosition.top,animationType: AnimationType.fromTop,height: 50,width: double.infinity,padding: EdgeInsets.fromLTRB(10, 55, 10,0),).show(context);
+                    // const snackbar = SnackBar(content: Text("Enter some text",style: TextStyle(fontWeight:FontWeight.bold),),backgroundColor: Colors.red,elevation: 10,behavior: SnackBarBehavior.floating,margin: EdgeInsets.fromLTRB(5,0,5,20),);
+                    // ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                    
+                  }else{
+                    print(_controller.text);
                     context.read<NotesProvider>().Create(_controller.text,uuid.v4());
                     Navigator.pop(context);
+                  }
+                    
 
                 },
                     style: ElevatedButton.styleFrom(

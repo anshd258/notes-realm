@@ -27,7 +27,7 @@ void main() async {
   });
 
   // Sync all subscriptions
-  // await realm.subscriptions.waitForSynchronization();
+  await realm.subscriptions.waitForSynchronization();
   runApp(const MyApp());
 }
 

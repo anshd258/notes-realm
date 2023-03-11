@@ -94,49 +94,51 @@ class _NotesCardState extends State<NotesCard> {
                                               context: context,
                                               builder: (BuildContext context) {
                                                 return Container(
-                                                  margin:
-                                                  const EdgeInsets.all(40),
-                                                  child: Center(
-                                                    child: Column(
-                                                      children: [
-                                                        const SizedBox(
-                                                          height: 30,
-                                                        ),
-                                                        TextFormField(
-                                                          initialValue: value,
-                                                          onChanged: (text){
-                                                            value=text;
+                                                    margin:
+                                                    const EdgeInsets.all(40),
+                                                    child: Center(
+                                                        child: Column(
+                                                            children: [
+                                                              const SizedBox(
+                                                                height: 30,
+                                                              ),
+                                                              TextFormField(
+                                                                initialValue: value,
+                                                                onChanged: (text){
+                                                                  value=text;
 
-                                                          },
-                                                          style: GoogleFonts
-                                                              .ubuntu(
-                                                            fontSize: 20,
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 100,
-                                                        ),
-                                                        OutlinedButton(
-                                                          onPressed: () {
-                                                            context.read<NotesProvider>().update(value,e.id);
-                                                            Navigator.pop(
-                                                                context);
+                                                                },
+                                                                style: GoogleFonts
+                                                                    .ubuntu(
+                                                                  fontSize: 20,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 100,
+                                                              ),
+                                                              OutlinedButton(
+                                                                onPressed: () {
+                                                                  context.read<NotesProvider>().update(value,e.id);
+                                                                  Navigator.pop(
+                                                                      context);
 
-                                                          },
-                                                          child: Text(
-                                                            'UPDATE',
-                                                            style: GoogleFonts
-                                                                .ubuntu(
-                                                              fontSize: 20,
-                                                              color:
-                                                              Colors.black,
-                                                            ),
+                                                                },
+                                                                child: Text(
+                                                                  'UPDATE',
+                                                                  style: GoogleFonts
+                                                                      .ubuntu(
+                                                                    fontSize: 20,
+                                                                    color:
+                                                                    Colors.black,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ),
-                                                      ],
+
+                                                      
                                                     ),
-                                                  ),
-                                                );
+                                                  );
                                               });
                                         },
                                         icon: Icon(
