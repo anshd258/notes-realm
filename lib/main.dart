@@ -6,6 +6,7 @@ import 'package:realm/realm.dart';
 import 'package:sizer/sizer.dart';
 import 'provider/notes_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:notes/screens/splash.dart';
 
 late final Realm realm;
 
@@ -48,7 +49,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             initialRoute: "/",
             routes: {
-              '/': (context) => const Page1(),
+              '/': (context) => Splash(),
+              '/page1': (context) => Page1(),
               '/notespage': (context) => const Page2()
             },
             debugShowCheckedModeBanner: false,
