@@ -49,8 +49,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             initialRoute: "/",
             routes: {
-              '/': (context) => Splash(),
-              '/page1': (context) => Page1(),
+              '/': (context) => const Splash(),
+              '/page1': (context) => const Page1(),
               '/notespage': (context) => const Page2()
             },
             debugShowCheckedModeBanner: false,
