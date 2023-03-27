@@ -15,7 +15,6 @@ class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Background,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         centerTitle: true,
@@ -28,7 +27,22 @@ class _Page1State extends State<Page1> {
           ),
         ),
       ),
-      body: const NotesCard(),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.black,
+            Color.fromARGB(255, 2, 41, 52),
+            Color.fromARGB(255, 3, 78, 101),
+            Color.fromARGB(255, 4, 88, 113),
+            Color.fromARGB(255, 4, 101, 130),
+          ],
+        )),
+        child: const NotesCard(),
+      ),
 
       // FLOATING ACTION BUTTON TO ADD NOTES
       floatingActionButton: FloatingActionButton(

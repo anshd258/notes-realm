@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/screens/page1.dart';
+import 'package:sizer/sizer.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -16,7 +17,7 @@ class SplashState extends State<Splash> {
   }
 
   _navigatetohome() async {
-    await Future.delayed(const Duration(seconds: 5), () {});
+    await Future.delayed(const Duration(seconds: 3), () {});
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const Page1()));
   }
@@ -24,16 +25,34 @@ class SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
-      body: Center(
-        child: Container(
-          width: 250,
-          height: 250,
-          decoration: const BoxDecoration(
-            color: Colors.greenAccent,
-            image: DecorationImage(
-              image: AssetImage('assets/notes.png'),
-              fit: BoxFit.cover,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.black,
+            Color.fromARGB(255, 2, 41, 52),
+            Color.fromARGB(255, 3, 78, 101),
+            Color.fromARGB(255, 4, 88, 113),
+            Color.fromARGB(255, 4, 101, 130),
+          ],
+        )),
+        child: Center(
+          child: Container(
+            width: 40.h,
+            height: 40.h,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.transparent),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(40),
+              ),
+              color: const Color.fromARGB(255, 179, 229, 190),
+              image: const DecorationImage(
+                image: AssetImage('assets/notes.png'),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

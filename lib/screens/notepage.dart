@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:motion_toast/resources/arrays.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -23,115 +24,138 @@ class _Page2State extends State<Page2> {
   Widget build(BuildContext context) {
     final date = DateTime.now();
     return Scaffold(
-      backgroundColor: Background,
       appBar: AppBar(
-        leading: const BackButton(),
-        title: const Text('ADD YOUR NOTE'),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(30),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        centerTitle: true,
+        title: Text(
+          'Add Your Note',
+          style: GoogleFonts.arya(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: const Color.fromARGB(255, 0, 0, 0),
           ),
         ),
-        backgroundColor: addappbar,
       ),
-      body: SafeArea(
-          child: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            width: 85.w,
-            padding: EdgeInsets.symmetric(vertical: 2.h),
-            height: 60.h,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 255, 255, 255),
-              borderRadius: BorderRadius.all(Radius.circular(40)),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    "${date.day} - ${date.month} - ${date.year}",
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w500),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.black,
+            Color.fromARGB(255, 2, 41, 52),
+            Color.fromARGB(255, 3, 78, 101),
+            Color.fromARGB(255, 4, 88, 113),
+            Color.fromARGB(255, 4, 101, 130),
+          ],
+        )),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Container(
+              width: 85.w,
+              padding: EdgeInsets.symmetric(vertical: 2.h),
+              height: 55.h,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 255, 255),
+                // color: Colors.transparent,
+                borderRadius: BorderRadius.all(Radius.circular(40)),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Text(
+                      "${date.day} - ${date.month} - ${date.year}",
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w500),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 70.w,
-                  child: TextField(
-                    maxLines: 12,
-                    textAlign: TextAlign.center,
-                    controller: _controller,
-                    decoration: InputDecoration(
-                      hintText:
-                          "Write about your\n\n- daily goals\n\n- ideas in mind\n\n- articles\n\n- save text and links\n\n- Reminders",
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
+                  SizedBox(
+                    width: 70.w,
+                    child: TextField(
+                      maxLines: 12,
+                      textAlign: TextAlign.center,
+                      controller: _controller,
+                      decoration: const InputDecoration(
+                        hintText:
+                            "Write about your\n\n- daily goals\n\n- ideas in mind\n\n- articles\n\n- save text and links\n\n- Reminders",
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          borderSide: BorderSide(
+                            width: 0.5,
+                            color: Color.fromARGB(255, 4, 101, 130),
+                          ),
                         ),
-                        borderSide: BorderSide(
-                            width: 0.5, color: Colors.greenAccent.shade400),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          borderSide: BorderSide(
+                            width: 0.5,
+                            color: Color.fromARGB(255, 4, 101, 130),
+                          ),
                         ),
-                        borderSide: BorderSide(
-                            width: 0.5, color: Colors.greenAccent.shade400),
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(20),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                          borderSide: BorderSide(
+                            width: 0.5,
+                            color: Color.fromARGB(255, 4, 101, 130),
+                          ),
                         ),
-                        borderSide: BorderSide(
-                            width: 0.5, color: Colors.greenAccent.shade400),
-                      ),
-                      icon: const Icon(
-                        Icons.text_fields_rounded,
-                        color: Colors.black54,
+                        icon: Icon(
+                          Icons.text_fields_rounded,
+                          color: Colors.black54,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_controller.text.isEmpty) {
-                      MotionToast.error(
-                        description: const Text("Enter some text"),
-                        title: const Text("Can't be added!!!!"),
-                        position: MotionToastPosition.top,
-                        animationType: AnimationType.fromTop,
-                        height: 50,
-                        width: double.infinity,
-                        padding: const EdgeInsets.fromLTRB(10, 55, 10, 0),
-                      ).show(context);
-                      // const snackbar = SnackBar(content: Text("Enter some text",style: TextStyle(fontWeight:FontWeight.bold),),backgroundColor: Colors.red,elevation: 10,behavior: SnackBarBehavior.floating,margin: EdgeInsets.fromLTRB(5,0,5,20),);
-                      // ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                    } else {
-                      context
-                          .read<NotesProvider>()
-                          .create(_controller.text, uuid.v4());
-                      Navigator.pop(context);
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      textStyle: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                      ),
-                      shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10)))),
-                  child: const Padding(
-                    padding: EdgeInsets.all(11.0),
-                    child: Text("ADD"),
-                  ),
-                )
-              ],
+                  ElevatedButton(
+                    onPressed: () {
+                      if (_controller.text.isEmpty) {
+                        MotionToast.error(
+                          description: const Text("Enter some text"),
+                          title: const Text("Can't be added!!!!"),
+                          position: MotionToastPosition.top,
+                          animationType: AnimationType.fromTop,
+                          height: 50,
+                          width: double.infinity,
+                          padding: const EdgeInsets.fromLTRB(10, 55, 10, 0),
+                        ).show(context);
+                        // const snackbar = SnackBar(content: Text("Enter some text",style: TextStyle(fontWeight:FontWeight.bold),),backgroundColor: Colors.red,elevation: 10,behavior: SnackBarBehavior.floating,margin: EdgeInsets.fromLTRB(5,0,5,20),);
+                        // ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      } else {
+                        context
+                            .read<NotesProvider>()
+                            .create(_controller.text, uuid.v4());
+                        Navigator.pop(context);
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 4, 101, 130),
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                        shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10)))),
+                    child: const Padding(
+                      padding: EdgeInsets.all(11.0),
+                      child: Text("ADD"),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      )),
+      ),
     );
     // ignore: dead_code
     //   @override
