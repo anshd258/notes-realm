@@ -9,14 +9,14 @@ import 'package:motion_toast/motion_toast.dart';
 import '../provider/local_notes.dart';
 import '../provider/notes_provider.dart';
 
-class Page2 extends StatefulWidget {
-  const Page2({super.key});
+class LocalNotes extends StatefulWidget {
+  const LocalNotes({super.key});
 
   @override
-  State<Page2> createState() => _Page2State();
+  State<LocalNotes> createState() => _LocalNotesState();
 }
 
-class _Page2State extends State<Page2> {
+class _LocalNotesState extends State<LocalNotes> {
   final TextEditingController _controller = TextEditingController();
   final date = DateTime.now();
   var uuid = const Uuid();
@@ -41,16 +41,16 @@ class _Page2State extends State<Page2> {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.black,
-            Color.fromARGB(255, 2, 41, 52),
-            Color.fromARGB(255, 3, 78, 101),
-            Color.fromARGB(255, 4, 88, 113),
-            Color.fromARGB(255, 4, 101, 130),
-          ],
-        )),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Colors.black,
+                Color.fromARGB(255, 2, 41, 52),
+                Color.fromARGB(255, 3, 78, 101),
+                Color.fromARGB(255, 4, 88, 113),
+                Color.fromARGB(255, 4, 101, 130),
+              ],
+            )),
         child: Center(
           child: SingleChildScrollView(
             child: Container(
@@ -81,7 +81,7 @@ class _Page2State extends State<Page2> {
                       controller: _controller,
                       decoration: const InputDecoration(
                         hintText:
-                            "Share your view with others about \n\n- daily goals\n\n- ideas in mind\n\n- articles\n\n- save text and links\n\n- Reminders",
+                        "Write about your\n\n- daily goals\n\n- ideas in mind\n\n- articles\n\n- save text and links\n\n- Reminders",
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
@@ -131,8 +131,9 @@ class _Page2State extends State<Page2> {
                         // const snackbar = SnackBar(content: Text("Enter some text",style: TextStyle(fontWeight:FontWeight.bold),),backgroundColor: Colors.red,elevation: 10,behavior: SnackBarBehavior.floating,margin: EdgeInsets.fromLTRB(5,0,5,20),);
                         // ScaffoldMessenger.of(context).showSnackBar(snackbar);
                       } else {
+                        print("hiii");
                         context
-                            .read<NotesProvider>()
+                            .read<LocalNotesProvider>()
                             .create(_controller.text, uuid.v4());
                         Navigator.pop(context);
                       }
@@ -145,7 +146,7 @@ class _Page2State extends State<Page2> {
                         ),
                         shape: const RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(10)))),
+                            BorderRadius.all(Radius.circular(10)))),
                     child: const Padding(
                       padding: EdgeInsets.all(11.0),
                       child: Text("ADD"),

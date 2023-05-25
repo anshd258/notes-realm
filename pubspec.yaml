@@ -44,7 +44,10 @@ dependencies:
   realm: ^1.0.2
   toast: ^0.2.9
   motion_toast: ^2.6.5
-  
+  google_nav_bar: ^5.0.6
+  intl: ^0.18.1
+
+
 
 dev_dependencies:
   flutter_test:

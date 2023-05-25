@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:notes/model/notes_struct.dart';
+import 'package:notes/provider/local_notes.dart';
+import 'package:notes/screens/addLocal.dart';
 import 'package:notes/screens/notepage.dart';
 import 'package:notes/screens/page1.dart';
 import 'package:realm/realm.dart';
 import 'package:sizer/sizer.dart';
+import 'model/local_notes_struct.dart';
 import 'provider/notes_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:notes/screens/splash.dart';
 
 late final Realm realm;
+late final Realm localRealm;
 
 void main() async {
   //connection with altas
@@ -16,6 +20,10 @@ void main() async {
 
   //check user login status
   final user = app.currentUser ?? await app.logIn(Credentials.anonymous());
+
+  //stabilise local database
+  final configLocal = Configuration.local([LocalNoteStruct.schema]);
+  localRealm = Realm(configLocal);
 
   //stabilise flexible sync
   final config = Configuration.flexibleSync(user, [NoteStruct.schema]);
@@ -42,8 +50,13 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<NotesProvider>(
-      create: (context) => NotesProvider(),
+    return MultiProvider(providers:
+        [
+      ChangeNotifierProvider<NotesProvider>(
+        create: (_) => NotesProvider(),),
+          ChangeNotifierProvider<LocalNotesProvider>(
+            create: (_) => LocalNotesProvider(),),
+      ],
       child: Sizer(
         builder: ((context, orientation, deviceType) {
           return MaterialApp(
@@ -51,7 +64,8 @@ class _MyAppState extends State<MyApp> {
             routes: {
               '/': (context) => const Splash(),
               '/page1': (context) => const Page1(),
-              '/notespage': (context) => const Page2()
+              '/notespage': (context) => const Page2(),
+              '/addLocal' : (context) => const LocalNotes(),
             },
             debugShowCheckedModeBanner: false,
           );
