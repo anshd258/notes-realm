@@ -5,7 +5,7 @@ import 'package:notes/screens/addLocal.dart';
 import 'package:notes/screens/notepage.dart';
 import 'package:notes/screens/page1.dart';
 import 'package:realm/realm.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'model/local_notes_struct.dart';
 import 'provider/notes_provider.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
           ChangeNotifierProvider<LocalNotesProvider>(
             create: (_) => LocalNotesProvider(),),
       ],
-      child: Sizer(
+      child: ResponsiveSizer(
         builder: ((context, orientation, deviceType) {
           return MaterialApp(
             initialRoute: "/",

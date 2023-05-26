@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/screens/page1.dart';
-import 'package:sizer/sizer.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Splash extends StatefulWidget {
   const Splash({super.key});

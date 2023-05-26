@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notes/model/colour.dart';
-import 'package:sizer/sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../provider/local_notes.dart';
 import '../provider/notes_provider.dart';
 import 'package:intl/intl.dart';
