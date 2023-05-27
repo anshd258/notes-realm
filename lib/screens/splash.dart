@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:notes/model/colour.dart';
 import 'package:notes/screens/page1.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -16,10 +17,16 @@ class SplashState extends State<Splash> {
     _navigatetohome();
   }
 
-  _navigatetohome() async {
+  Future<void> _navigatetohome() async {
     await Future.delayed(const Duration(seconds: 3), () {});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const Page1()));
+    if (context.mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Page1(),
+        ),
+      );
+    }
   }
 
   @override
@@ -28,17 +35,12 @@ class SplashState extends State<Splash> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.black,
-            Color.fromARGB(255, 2, 41, 52),
-            Color.fromARGB(255, 3, 78, 101),
-            Color.fromARGB(255, 4, 88, 113),
-            Color.fromARGB(255, 4, 101, 130),
-          ],
-        )),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: backgroundGradient,
+          ),
+        ),
         child: Center(
           child: Container(
             width: 40.h,

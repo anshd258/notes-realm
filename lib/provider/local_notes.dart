@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:notes/model/local_notes_struct.dart';
-import 'package:notes/model/notes_struct.dart';
 import 'package:notes/main.dart';
 import 'package:realm/realm.dart';
 
 class LocalNotesProvider with ChangeNotifier {
-
   late final notes = localRealm.all<LocalNoteStruct>();
 
   void create(String data, String uuid) {
     localRealm.write(() {
-      localRealm.add(LocalNoteStruct(ObjectId(),uuid, DateTime.now(), content: data));
+      localRealm.add(
+          LocalNoteStruct(ObjectId(), uuid, DateTime.now(), content: data));
     });
     notifyListeners();
   }

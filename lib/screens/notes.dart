@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes/model/colour.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import '../provider/local_notes.dart';
 import '../provider/notes_provider.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +15,6 @@ class NotesCard extends StatefulWidget {
 class _NotesCardState extends State<NotesCard> {
   // LIST OF THE NOTES
   TextEditingController ctr = TextEditingController();
-  @override
   @override
   Widget build(BuildContext context) {
     // final notes = context.watch<NotesProvider>().notes;
@@ -93,9 +90,10 @@ class _NotesCardState extends State<NotesCard> {
                                             child: Text(
                                               e.content!,
                                               style: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  fontStyle: FontStyle.normal,
-                                                  height: 0.16.h),
+                                                fontSize: 15.sp,
+                                                fontStyle: FontStyle.normal,
+                                                height: 0.16.h,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -114,83 +112,87 @@ class _NotesCardState extends State<NotesCard> {
                                           SizedBox(
                                             height: 1.h,
                                           ),
-                                      //     Expanded(
-                                      //       child: IconButton(
-                                      //         onPressed: () {
-                                      //           String value = e.content!;
-                                      //           showModalBottomSheet(
-                                      //               backgroundColor:
-                                      //                   noteandmodelcard,
-                                      //               context: context,
-                                      //               builder:
-                                      //                   (BuildContext context) {
-                                      //                 return Container(
-                                      //                   margin: const EdgeInsets
-                                      //                       .all(40),
-                                      //                   child: Center(
-                                      //                     child: Column(
-                                      //                       children: [
-                                      //                         const SizedBox(
-                                      //                           height: 30,
-                                      //                         ),
-                                      //                         TextFormField(
-                                      //                           initialValue:
-                                      //                               value,
-                                      //                           onChanged:
-                                      //                               (text) {
-                                      //                             value = text;
-                                      //                           },
-                                      //                           style:
-                                      //                               GoogleFonts
-                                      //                                   .ubuntu(
-                                      //                             fontSize: 20,
-                                      //                           ),
-                                      //                         ),
-                                      //                         const SizedBox(
-                                      //                           height: 100,
-                                      //                         ),
-                                      //                         OutlinedButton(
-                                      //                           onPressed: () {
-                                      //                             context
-                                      //                                 .read<
-                                      //                                     NotesProvider>()
-                                      //                                 .update(
-                                      //                                     value,
-                                      //                                     e.id);
-                                      //                             Navigator.pop(
-                                      //                                 context);
-                                      //                           },
-                                      //                           child: Text(
-                                      //                             'UPDATE',
-                                      //                             style:
-                                      //                                 GoogleFonts
-                                      //                                     .ubuntu(
-                                      //                               fontSize:
-                                      //                                   20,
-                                      //                               color: Colors
-                                      //                                   .black,
-                                      //                             ),
-                                      //                           ),
-                                      //                         ),
-                                      //                       ],
-                                      //                     ),
-                                      //                   ),
-                                      //                 );
-                                      //               });
-                                      //         },
-                                      //         icon: Icon(
-                                      //           Icons.edit,
-                                      //           size: 24,
-                                      //           color: Colors.blue[900],
-                                      //         ),
-                                      //       ),
-                                      //     ),
+                                          //     Expanded(
+                                          //       child: IconButton(
+                                          //         onPressed: () {
+                                          //           String value = e.content!;
+                                          //           showModalBottomSheet(
+                                          //               backgroundColor:
+                                          //                   noteandmodelcard,
+                                          //               context: context,
+                                          //               builder:
+                                          //                   (BuildContext context) {
+                                          //                 return Container(
+                                          //                   margin: const EdgeInsets
+                                          //                       .all(40),
+                                          //                   child: Center(
+                                          //                     child: Column(
+                                          //                       children: [
+                                          //                         const SizedBox(
+                                          //                           height: 30,
+                                          //                         ),
+                                          //                         TextFormField(
+                                          //                           initialValue:
+                                          //                               value,
+                                          //                           onChanged:
+                                          //                               (text) {
+                                          //                             value = text;
+                                          //                           },
+                                          //                           style:
+                                          //                               GoogleFonts
+                                          //                                   .ubuntu(
+                                          //                             fontSize: 20,
+                                          //                           ),
+                                          //                         ),
+                                          //                         const SizedBox(
+                                          //                           height: 100,
+                                          //                         ),
+                                          //                         OutlinedButton(
+                                          //                           onPressed: () {
+                                          //                             context
+                                          //                                 .read<
+                                          //                                     NotesProvider>()
+                                          //                                 .update(
+                                          //                                     value,
+                                          //                                     e.id);
+                                          //                             Navigator.pop(
+                                          //                                 context);
+                                          //                           },
+                                          //                           child: Text(
+                                          //                             'UPDATE',
+                                          //                             style:
+                                          //                                 GoogleFonts
+                                          //                                     .ubuntu(
+                                          //                               fontSize:
+                                          //                                   20,
+                                          //                               color: Colors
+                                          //                                   .black,
+                                          //                             ),
+                                          //                           ),
+                                          //                         ),
+                                          //                       ],
+                                          //                     ),
+                                          //                   ),
+                                          //                 );
+                                          //               });
+                                          //         },
+                                          //         icon: Icon(
+                                          //           Icons.edit,
+                                          //           size: 24,
+                                          //           color: Colors.blue[900],
+                                          //         ),
+                                          //       ),
+                                          //     ),
 
                                           Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 19, 0, 0),
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 19, 0, 0),
                                             child: Text(
                                               "$date,\n $date1",
-                                              style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
                                             ),
                                           ),
                                           Expanded(
@@ -207,13 +209,11 @@ class _NotesCardState extends State<NotesCard> {
                                               ),
                                             ),
                                           ),
-                                      //     SizedBox(
-                                      //       height: 1.h,
-                                      //     ),
+                                          //     SizedBox(
+                                          //       height: 1.h,
+                                          //     ),
                                         ],
                                       ),
-
-
                                     ],
                                   ),
                                 ),

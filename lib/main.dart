@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:notes/model/colour.dart';
+import 'package:provider/provider.dart';
+import 'package:notes/screens/splash.dart';
 import 'package:notes/model/notes_struct.dart';
 import 'package:notes/provider/local_notes.dart';
 import 'package:notes/screens/addLocal.dart';
@@ -8,8 +11,6 @@ import 'package:realm/realm.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'model/local_notes_struct.dart';
 import 'provider/notes_provider.dart';
-import 'package:provider/provider.dart';
-import 'package:notes/screens/splash.dart';
 
 late final Realm realm;
 late final Realm localRealm;
@@ -50,22 +51,29 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers:
-        [
-      ChangeNotifierProvider<NotesProvider>(
-        create: (_) => NotesProvider(),),
-          ChangeNotifierProvider<LocalNotesProvider>(
-            create: (_) => LocalNotesProvider(),),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<NotesProvider>(
+          create: (_) => NotesProvider(),
+        ),
+        ChangeNotifierProvider<LocalNotesProvider>(
+          create: (_) => LocalNotesProvider(),
+        ),
       ],
       child: ResponsiveSizer(
         builder: ((context, orientation, deviceType) {
           return MaterialApp(
             initialRoute: "/",
+            theme: ThemeData(
+              appBarTheme: const AppBarTheme(
+                backgroundColor: noteandmodelcard,
+              ),
+            ),
             routes: {
               '/': (context) => const Splash(),
               '/page1': (context) => const Page1(),
               '/notespage': (context) => const Page2(),
-              '/addLocal' : (context) => const LocalNotes(),
+              '/addLocal': (context) => const LocalNotes(),
             },
             debugShowCheckedModeBanner: false,
           );

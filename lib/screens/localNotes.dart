@@ -17,7 +17,6 @@ class _LocalNotesCardState extends State<LocalNotesCard> {
   // LIST OF THE NOTES
   TextEditingController ctr = TextEditingController();
   @override
-  @override
   Widget build(BuildContext context) {
     // final notes = context.watch<NotesProvider>().notes;
     final notes = context.watch<LocalNotesProvider>().notes;
