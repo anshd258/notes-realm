@@ -11,6 +11,9 @@ import 'package:realm/realm.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'model/local_notes_struct.dart';
 import 'provider/notes_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:notes/screens/login.dart';
+import 'package:notes/screens/splash.dart';
 
 late final Realm realm;
 late final Realm localRealm;
