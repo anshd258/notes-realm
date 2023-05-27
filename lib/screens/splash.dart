@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes/screens/page1.dart';
+import 'package:notes/screens/login.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Splash extends StatefulWidget {
@@ -19,7 +19,7 @@ class SplashState extends State<Splash> {
   _navigatetohome() async {
     await Future.delayed(const Duration(seconds: 3), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const Page1()));
+        context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   @override
