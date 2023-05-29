@@ -26,7 +26,7 @@ class _LocalNotesCardState extends State<LocalNotesCard> {
         child: Column(
           children: [
             const SizedBox(
-              height: 10,
+              height: 110,
             ),
             Column(
               // MAAPING THE ITEMS OF THE LIST IN CARDS

@@ -6,6 +6,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:realm/realm.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:notes/model/colour.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -24,35 +25,48 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(children: [
-          SwitchListTile(
-            secondary: const Icon(Icons.brightness_low),
-            value: isDarkTheme,
-            title: Text(
-              "Change Theme",
-              style: TextStyle(fontSize: 20.sp),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: backgroundGradient,
             ),
-            onChanged: _onThemeChange,
           ),
-          SwitchListTile(
-            secondary: const Icon(Icons.sync),
-            value: isFlexibleSync,
-            title: Text(
-              "Flexible Sync",
-              style: TextStyle(fontSize: 20.sp),
+          child: Column(children: [
+            const SizedBox(
+              height: 110,
             ),
-            onChanged: _onFlexibleSyncChange,
-          ),
-          // ListTile(
-          //   leading: const Icon(Icons.person),
-          //   trailing: const Icon(Icons.logout),
-          //   title: Text(
-          //     "Logout",
-          //     style: TextStyle(fontSize: 20.sp),
-          //   ),
-          //   onTap: _logout,
-          // ),
-        ]),
+            SwitchListTile(
+              secondary: const Icon(Icons.brightness_low, color: Colors.white),
+              value: isDarkTheme,
+              title: Text(
+                "Change Theme",
+                style: TextStyle(fontSize: 20.sp, color: Colors.white),
+              ),
+              onChanged: _onThemeChange,
+            ),
+            SwitchListTile(
+              secondary: const Icon(Icons.sync, color: Colors.white),
+              value: isFlexibleSync,
+              title: Text(
+                "Flexible Sync",
+                style: TextStyle(fontSize: 20.sp, color: Colors.white),
+              ),
+              onChanged: _onFlexibleSyncChange,
+            ),
+            // ListTile(
+            //   leading: const Icon(Icons.person),
+            //   trailing: const Icon(Icons.logout),
+            //   title: Text(
+            //     "Logout",
+            //     style: TextStyle(fontSize: 20.sp),
+            //   ),
+            //   onTap: _logout,
+            // ),
+          ]),
+        ),
       ),
     );
   }

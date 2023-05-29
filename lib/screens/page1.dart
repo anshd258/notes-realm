@@ -9,6 +9,7 @@ import 'package:notes/screens/notes.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:notes/screens/profile.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Page1 extends StatefulWidget {
   const Page1({super.key});
@@ -40,16 +41,20 @@ class _Page1State extends State<Page1> {
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           _getAppbarTitle(),
-          style: GoogleFonts.inter(
+          style: GoogleFonts.kalam(
             fontSize: 25,
             color: appBarTextColor,
+          ),
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(30),
           ),
         ),
       ),
