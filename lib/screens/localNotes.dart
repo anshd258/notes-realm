@@ -30,7 +30,7 @@ class _LocalNotesCardState extends State<LocalNotesCard> {
             ),
             Column(
               // MAAPING THE ITEMS OF THE LIST IN CARDS
-              children: notes.isEmpty
+              children: notes!.isEmpty
                   ? const [
                       Text(
                         'No notes are there currently',
@@ -149,7 +149,7 @@ class _LocalNotesCardState extends State<LocalNotesCard> {
                                                                 onPressed: () {
                                                                   context
                                                                       .read<
-                                                                          NotesProvider>()
+                                                                          LocalNotesProvider>()
                                                                       .update(
                                                                           value,
                                                                           e.uuid);

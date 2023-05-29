@@ -9,16 +9,16 @@ import 'package:provider/provider.dart';
 
 import '../provider/notes_provider.dart';
 
-class PageBody extends StatefulWidget {
+class SyncNotesBody extends StatefulWidget {
   final String hintText;
   // make it named if more parameters are required
-  const PageBody(this.hintText);
+  const SyncNotesBody(this.hintText);
 
   @override
-  State<PageBody> createState() => _PageBodyState();
+  State<SyncNotesBody> createState() => _SyncNotesBodyState();
 }
 
-class _PageBodyState extends State<PageBody> {
+class _SyncNotesBodyState extends State<SyncNotesBody> {
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -40,8 +40,7 @@ class _PageBodyState extends State<PageBody> {
   }
 
   void _addNewNote() {
-    final notesProvider =
-        Provider.of<LocalNotesProvider>(context, listen: false);
+    final notesProvider = Provider.of<NotesProvider>(context, listen: false);
     var uuid = const Uuid();
     notesProvider.create(
       _controller.text,

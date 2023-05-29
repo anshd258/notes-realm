@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:notes/provider/local_notes.dart';
+import 'package:notes/provider/loginRealm.dart';
+import 'package:notes/provider/notes_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:provider/provider.dart';
+import 'package:realm/realm.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class Profile extends StatefulWidget {
@@ -11,10 +17,10 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   // TODO load these values
   bool isDarkTheme = false;
-  bool isFlexibleSync = false;
 
   @override
   Widget build(BuildContext context) {
+    bool isFlexibleSync = context.watch<NotesProvider>().isFlexibleSync;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,22 +43,26 @@ class _ProfileState extends State<Profile> {
             ),
             onChanged: _onFlexibleSyncChange,
           ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            trailing: const Icon(Icons.logout),
-            title: Text(
-              "Logout",
-              style: TextStyle(fontSize: 20.sp),
-            ),
-            onTap: _logout,
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.person),
+          //   trailing: const Icon(Icons.logout),
+          //   title: Text(
+          //     "Logout",
+          //     style: TextStyle(fontSize: 20.sp),
+          //   ),
+          //   onTap: _logout,
+          // ),
         ]),
       ),
     );
   }
 
   // TODO implement these functions
-  void _onFlexibleSyncChange(bool newValue) {}
+  void _onFlexibleSyncChange(bool newValue) async {
+    context.read<NotesProvider>().sync = newValue;
+    context.read<NotesProvider>().pauseRealm();
+    setState(() {});
+  }
 
   void _logout() {}
 

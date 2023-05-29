@@ -4,7 +4,9 @@ import 'package:notes/main.dart';
 import 'package:realm/realm.dart';
 
 class LocalNotesProvider with ChangeNotifier {
-  late final notes = localRealm.all<LocalNoteStruct>();
+  late final Realm localRealm;
+
+  RealmResults<LocalNoteStruct>? notes;
 
   void create(String data, String uuid) {
     localRealm.write(() {
@@ -14,13 +16,25 @@ class LocalNotesProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void intialize( User user) {
+   
+     
+   
+      final configLocal = Configuration.local([LocalNoteStruct.schema]);
+      localRealm = Realm(configLocal);
+    
+
+    notes = localRealm.all<LocalNoteStruct>();
+    notifyListeners();
+  }
+
   void delete(LocalNoteStruct e) {
-    localRealm.write(() => realm.delete(e));
+    localRealm.write(() => localRealm.delete(e));
     notifyListeners();
   }
 
   void update(String data, String id) {
-    final note = notes.firstWhere((element) => element.uuid == id);
+    final note = notes!.firstWhere((element) => element.uuid == id);
     localRealm.write(() => note.content = data);
     notifyListeners();
   }

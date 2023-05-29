@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes/model/colour.dart';
+import 'package:notes/provider/loginRealm.dart';
 import 'package:provider/provider.dart';
 import 'package:notes/screens/splash.dart';
 import 'package:notes/model/notes_struct.dart';
@@ -15,31 +16,30 @@ import 'package:provider/provider.dart';
 import 'package:notes/screens/login.dart';
 import 'package:notes/screens/splash.dart';
 
-late final Realm realm;
-late final Realm localRealm;
+
+
 
 void main() async {
   //connection with altas
-  final app = App(AppConfiguration("notes-app-rzwgm"));
+  
 
   //check user login status
-  final user = app.currentUser ?? await app.logIn(Credentials.anonymous());
+  // final user = app.currentUser ?? await app.logIn(Credentials.anonymous());
 
   //stabilise local database
-  final configLocal = Configuration.local([LocalNoteStruct.schema]);
-  localRealm = Realm(configLocal);
+  
 
   //stabilise flexible sync
-  final config = Configuration.flexibleSync(user, [NoteStruct.schema]);
-  realm = Realm(config);
+  // final config = Configuration.flexibleSync(user, [NoteStruct.schema]);
+  // realm = Realm(config);
 
   // Add subscription to sync all NoteStruct objects in the realm
-  realm.subscriptions.update((mutableSubscriptions) {
-    mutableSubscriptions.add(realm.all<NoteStruct>());
-  });
+  // realm.subscriptions.update((mutableSubscriptions) {
+  //   mutableSubscriptions.add(realm.all<NoteStruct>());
+  // });
 
   // Sync all subscriptions
-  await realm.subscriptions.waitForSynchronization();
+  // await realm.subscriptions.waitForSynchronization();
   runApp(const MyApp());
 }
 
@@ -56,6 +56,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+          ChangeNotifierProvider<LoginRealm>(
+          create: (_) => LoginRealm(),
+        ),
         ChangeNotifierProvider<NotesProvider>(
           create: (_) => NotesProvider(),
         ),

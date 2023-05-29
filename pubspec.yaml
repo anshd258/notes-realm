@@ -46,6 +46,7 @@ dependencies:
   motion_toast: ^2.6.5
   google_nav_bar: ^5.0.6
   intl: ^0.18.1
+  permission_handler: ^10.2.0
 
 
 

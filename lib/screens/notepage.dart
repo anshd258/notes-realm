@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notes/widgets/body.dart';
+import 'package:notes/widgets/syncNotesBody.dart';
 
 import '../model/colour.dart';
 
@@ -26,7 +27,7 @@ class _Page2State extends State<Page2> {
           ),
         ),
       ),
-      body: PageBody(
+      body: SyncNotesBody(
         "Share your view with others about \n\n- daily goals\n\n- ideas in mind\n\n- articles\n\n- save text and links\n\n- Reminders",
       ),
     );

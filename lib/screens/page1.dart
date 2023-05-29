@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notes/model/colour.dart';
+import 'package:notes/provider/local_notes.dart';
+import 'package:notes/provider/loginRealm.dart';
+import 'package:notes/provider/notes_provider.dart';
 import 'package:notes/screens/localNotes.dart';
 import 'package:notes/screens/notes.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:notes/screens/profile.dart';
+import 'package:provider/provider.dart';
 
 class Page1 extends StatefulWidget {
   const Page1({super.key});
@@ -36,13 +40,15 @@ class _Page1State extends State<Page1> {
 
   @override
   Widget build(BuildContext context) {
+    
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           _getAppbarTitle(),
           style: GoogleFonts.inter(
-            fontSize: 28,
+            fontSize: 25,
             color: appBarTextColor,
           ),
         ),

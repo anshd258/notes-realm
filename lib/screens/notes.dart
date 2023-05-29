@@ -18,7 +18,7 @@ class _NotesCardState extends State<NotesCard> {
   @override
   Widget build(BuildContext context) {
     // final notes = context.watch<NotesProvider>().notes;
-    final notes = context.watch<NotesProvider>().notes;
+    final notes = context.watch<NotesProvider>().syncNotes;
 
     return SingleChildScrollView(
       child: Center(
@@ -29,7 +29,7 @@ class _NotesCardState extends State<NotesCard> {
             ),
             Column(
               // MAAPING THE ITEMS OF THE LIST IN CARDS
-              children: notes.isEmpty
+              children: notes!.isEmpty
                   ? const [
                       Text(
                         'No notes are there currently',
