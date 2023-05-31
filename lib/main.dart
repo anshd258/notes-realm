@@ -16,18 +16,13 @@ import 'package:provider/provider.dart';
 import 'package:notes/screens/login.dart';
 import 'package:notes/screens/splash.dart';
 
-
-
-
 void main() async {
   //connection with altas
-  
 
   //check user login status
   // final user = app.currentUser ?? await app.logIn(Credentials.anonymous());
 
   //stabilise local database
-  
 
   //stabilise flexible sync
   // final config = Configuration.flexibleSync(user, [NoteStruct.schema]);
@@ -56,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-          ChangeNotifierProvider<LoginRealm>(
+        ChangeNotifierProvider<LoginRealm>(
           create: (_) => LoginRealm(),
         ),
         ChangeNotifierProvider<NotesProvider>(
