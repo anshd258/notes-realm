@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:notes/screens/splash.dart';
 import 'package:notes/model/notes_struct.dart';
 import 'package:notes/provider/local_notes.dart';
+import 'package:notes/provider/theme_provider.dart';
 import 'package:notes/screens/addLocal.dart';
 import 'package:notes/screens/notepage.dart';
 import 'package:notes/screens/page1.dart';
@@ -15,6 +16,7 @@ import 'provider/notes_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:notes/screens/login.dart';
 import 'package:notes/screens/splash.dart';
+import 'package:notes/provider/theme_provider.dart';
 
 void main() async {
   //connection with altas
@@ -47,12 +49,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  // bool isDarkTheme = false;
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginRealm>(
           create: (_) => LoginRealm(),
+        ),
+        ChangeNotifierProvider<AppTheme>(
+          create: (_) => AppTheme(),
         ),
         ChangeNotifierProvider<NotesProvider>(
           create: (_) => NotesProvider(),
@@ -63,21 +69,31 @@ class _MyAppState extends State<MyApp> {
       ],
       child: ResponsiveSizer(
         builder: ((context, orientation, deviceType) {
-          return MaterialApp(
-            initialRoute: "/",
-            theme: ThemeData(
-              appBarTheme: const AppBarTheme(
-                backgroundColor: noteandmodelcard,
-              ),
-            ),
-            routes: {
-              '/': (context) => const Splash(),
-              '/page1': (context) => const Page1(),
-              '/notespage': (context) => const Page2(),
-              '/addLocal': (context) => const LocalNotes(),
-            },
-            debugShowCheckedModeBanner: false,
-          );
+          return Consumer<AppTheme>(builder: (context, themeProvider, child) {
+            return MaterialApp(
+              theme: themeProvider.isDark
+                  ? ThemeData(
+                      brightness: Brightness.dark,
+                    )
+                  : ThemeData(
+                      brightness: Brightness.light,
+                      primaryColor: Colors.green,
+                      primarySwatch: Colors.green),
+              initialRoute: "/",
+              // theme: ThemeData(
+              //   appBarTheme: const AppBarTheme(
+              //     backgroundColor: noteandmodelcard,
+              //   ),
+              // ),
+              routes: {
+                '/': (context) => const Splash(),
+                '/page1': (context) => const Page1(),
+                '/notespage': (context) => const Page2(),
+                '/addLocal': (context) => const LocalNotes(),
+              },
+              debugShowCheckedModeBanner: false,
+            );
+          });
         }),
       ),
     );

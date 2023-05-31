@@ -32,10 +32,9 @@ class NotesProvider with ChangeNotifier {
 
   Future<void> pauseRealm() async {
     if (isFlexibleSync) {
-    syncRealm.syncSession.resume();
+      syncRealm.syncSession.resume();
     } else {
-      
-        syncRealm.syncSession.pause();
+      syncRealm.syncSession.pause();
     }
   }
 

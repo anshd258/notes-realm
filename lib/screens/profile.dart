@@ -7,6 +7,10 @@ import 'package:provider/provider.dart';
 import 'package:realm/realm.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:notes/model/colour.dart';
+import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:notes/main.dart';
+import 'package:notes/provider/theme_provider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -80,5 +84,7 @@ class _ProfileState extends State<Profile> {
 
   void _logout() {}
 
-  void _onThemeChange(bool newValue) {}
+  void _onThemeChange(bool value) {
+    context.read<AppTheme>().isDark = value;
+  }
 }
