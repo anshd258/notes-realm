@@ -21,11 +21,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   // TODO load these values
-  bool isDarkTheme = false;
 
   @override
   Widget build(BuildContext context) {
     bool isFlexibleSync = context.watch<NotesProvider>().isFlexibleSync;
+    bool isDarkTheme = context.watch<AppTheme>().isDark;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),

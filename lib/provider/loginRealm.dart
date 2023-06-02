@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:realm/realm.dart';
 
 class LoginRealm with ChangeNotifier {
-  final app = App(AppConfiguration("notes-realm-dmfux"));
+  final app = App(AppConfiguration("application-0-mpfzh"));
   late User? user;
 
   Future login() async {
